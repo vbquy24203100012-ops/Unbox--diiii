@@ -5,64 +5,77 @@
 <title>Chúc mừng 8/3</title>
 
 <style>
+
 body{
-    margin:0;
-    height:100vh;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    font-family:Arial;
-    color:white;
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+font-family:Arial;
+color:white;
 }
 
+/* khung chữ ở giữa */
 .container{
-    text-align:center;
+text-align:center;
+width:90%;
+max-width:600px;
 }
 
+/* tiêu đề */
 h1{
-    font-size:60px;
-    text-shadow:0 0 20px white,0 0 40px pink;
+font-size:50px;
+text-shadow:0 0 20px white,0 0 40px pink;
+margin-bottom:20px;
 }
 
+/* đoạn chúc */
 #text{
-    font-size:22px;
-    width:500px;
+font-size:22px;
+max-width:500px;
+margin:auto;
+line-height:1.6;
 }
 
 /* tim bay */
 .heart{
-    position:fixed;
-    color:red;
-    font-size:20px;
-    animation: float 4s linear infinite;
+position:fixed;
+color:red;
+font-size:20px;
+animation:float 4s linear infinite;
 }
 
 @keyframes float{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-100vh);}
+0%{transform:translateY(0)}
+100%{transform:translateY(-100vh)}
 }
 
 /* hoa rơi */
 .flower{
-    position:absolute;
-    top:-20px;
-    font-size:24px;
-    animation: fall linear infinite;
+position:absolute;
+top:-20px;
+font-size:24px;
+animation:fall linear infinite;
 }
 
 @keyframes fall{
-    to{transform:translateY(110vh);}
+to{transform:translateY(110vh)}
 }
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
-<h1>🌸Happy Women’s Day 🌸</h1>
+
+<h1>🌸 Happy Women's Day 🌸</h1>
+
 <p id="text"></p>
+
 </div>
 
 <audio autoplay loop>
@@ -70,59 +83,90 @@ h1{
 </audio>
 
 <script>
+
 /* hiệu ứng gõ chữ */
-const message = "Chúc cậu một ngày 8/3 thật vui vẻ. Tớ mong cậu luôn xinh đẹp, hạnh phúc và gặp nhiều điều tốt đẹp. Cảm ơn vì cậu đã xuất hiện trong cuộc sống này.Hy vọng hôm nay sẽ là một ngày thật đặc biệt với cậu 💖.";
+
+const message = "Chúc cậu một ngày 8/3 thật vui vẻ. Tớ mong cậu luôn xinh đẹp, hạnh phúc và gặp nhiều điều tốt đẹp. Cảm ơn vì cậu đã xuất hiện trong cuộc sống này. Hy vọng hôm nay sẽ là một ngày thật đặc biệt với cậu 💖.";
+
 let i = 0;
 
 function type(){
-    if(i < message.length){
-        document.getElementById("text").innerHTML += message.charAt(i);
-        i++;
-        setTimeout(type,40);
-    }
+if(i < message.length){
+document.getElementById("text").innerHTML += message.charAt(i);
+i++;
+setTimeout(type,40);
+}
 }
 
 type();
 
-/* tim bay */
-function heart(){
-    const h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤";
-    h.style.left=Math.random()*100+"vw";
-    document.body.appendChild(h);
 
-    setTimeout(()=>{h.remove()},4000);
+/* tim bay */
+
+function heart(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤";
+
+h.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{h.remove()},4000);
+
 }
 
 setInterval(heart,300);
 
-/* hoa rơi */
-function flower(){
-    const f=document.createElement("div");
-    f.className="flower";
-    f.innerHTML="🌸";
-    f.style.left=Math.random()*100+"vw";
-    f.style.animationDuration=3+Math.random()*5+"s";
-    document.body.appendChild(f);
 
-    setTimeout(()=>{f.remove()},8000);
+/* hoa rơi */
+
+function flower(){
+
+const f=document.createElement("div");
+
+f.className="flower";
+
+f.innerHTML="🌸";
+
+f.style.left=Math.random()*100+"vw";
+
+f.style.animationDuration=3+Math.random()*5+"s";
+
+document.body.appendChild(f);
+
+setTimeout(()=>{f.remove()},8000);
+
 }
 
 setInterval(flower,400);
 
-/* click hiện tim */
-document.addEventListener("click",function(e){
-    const heart=document.createElement("div");
-    heart.innerHTML="💗";
-    heart.style.position="absolute";
-    heart.style.left=e.clientX+"px";
-    heart.style.top=e.clientY+"px";
-    heart.style.fontSize="25px";
-    document.body.appendChild(heart);
 
-    setTimeout(()=>{heart.remove()},1000);
+/* bấm màn hình hiện tim */
+
+document.addEventListener("click",function(e){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="💗";
+
+heart.style.position="absolute";
+
+heart.style.left=e.clientX+"px";
+
+heart.style.top=e.clientY+"px";
+
+heart.style.fontSize="25px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},1000);
+
 });
+
 </script>
 
 </body>
