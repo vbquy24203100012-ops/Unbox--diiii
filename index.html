@@ -2,115 +2,127 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Một điều dành cho bạn</title>
+<title>Chúc mừng 8/3</title>
 
 <style>
 body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
-font-family:Arial;
-overflow:hidden;
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial;
+    color:white;
 }
 
-#gift{
-font-size:120px;
-cursor:pointer;
-animation:shake 1s infinite;
-}
-
-@keyframes shake{
-0%{transform:rotate(0)}
-25%{transform:rotate(5deg)}
-50%{transform:rotate(0)}
-75%{transform:rotate(-5deg)}
-100%{transform:rotate(0)}
-}
-
-#message{
-display:none;
-text-align:center;
-color:white;
+.container{
+    text-align:center;
 }
 
 h1{
-font-size:60px;
-text-shadow:0 0 20px white,0 0 40px pink;
+    font-size:60px;
+    text-shadow:0 0 20px white,0 0 40px pink;
 }
 
+#text{
+    font-size:22px;
+    width:500px;
+}
+
+/* tim bay */
 .heart{
-position:absolute;
-font-size:20px;
-color:red;
-animation:float 4s linear infinite;
+    position:fixed;
+    color:red;
+    font-size:20px;
+    animation: float 4s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0)}
-100%{transform:translateY(-100vh)}
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-100vh);}
 }
 
+/* hoa rơi */
 .flower{
-position:absolute;
-font-size:24px;
-animation:fall linear infinite;
+    position:absolute;
+    top:-20px;
+    font-size:24px;
+    animation: fall linear infinite;
 }
 
 @keyframes fall{
-to{transform:translateY(110vh)}
+    to{transform:translateY(110vh);}
 }
 </style>
 </head>
 
 <body>
 
-<div id="gift">🎁</div>
-
-<div id="message">
-<h1>🌸Happy women’s day 🌸</h1>
-<p> Chúc cậu một ngày 8/3 thật vui vẻ. Tớ mong cậu luôn xinh đẹp, hạnh phúc và gặp nhiều điều tốt đẹp. Cảm ơn vì cậu đã xuất hiện trong cuộc sống này.Hy vọng hôm nay sẽ là một ngày thật đặc biệt với cậu 💖 </p>
+<div class="container">
+<h1>🌸Happy Women’s Day 🌸</h1>
+<p id="text"></p>
 </div>
 
-<audio id="music" loop>
+<audio autoplay loop>
 <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3">
 </audio>
 
 <script>
+/* hiệu ứng gõ chữ */
+const message = "Chúc cậu một ngày 8/3 thật vui vẻ. Tớ mong cậu luôn xinh đẹp, hạnh phúc và gặp nhiều điều tốt đẹp. Cảm ơn vì cậu đã xuất hiện trong cuộc sống này.Hy vọng hôm nay sẽ là một ngày thật đặc biệt với cậu 💖.";
+let i = 0;
 
-const gift = document.getElementById("gift")
-const message = document.getElementById("message")
-const music = document.getElementById("music")
-
-gift.onclick = function(){
-gift.style.display="none"
-message.style.display="block"
-music.play()
+function type(){
+    if(i < message.length){
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(type,40);
+    }
 }
 
+type();
+
 /* tim bay */
-setInterval(()=>{
-let h=document.createElement("div")
-h.className="heart"
-h.innerHTML="❤"
-h.style.left=Math.random()*100+"vw"
-document.body.appendChild(h)
-setTimeout(()=>h.remove(),4000)
-},300)
+function heart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+
+    setTimeout(()=>{h.remove()},4000);
+}
+
+setInterval(heart,300);
 
 /* hoa rơi */
-setInterval(()=>{
-let f=document.createElement("div")
-f.className="flower"
-f.innerHTML="🌸"
-f.style.left=Math.random()*100+"vw"
-f.style.animationDuration=3+Math.random()*5+"s"
-document.body.appendChild(f)
-setTimeout(()=>f.remove(),8000)
-},500)
+function flower(){
+    const f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=3+Math.random()*5+"s";
+    document.body.appendChild(f);
 
+    setTimeout(()=>{f.remove()},8000);
+}
+
+setInterval(flower,400);
+
+/* click hiện tim */
+document.addEventListener("click",function(e){
+    const heart=document.createElement("div");
+    heart.innerHTML="💗";
+    heart.style.position="absolute";
+    heart.style.left=e.clientX+"px";
+    heart.style.top=e.clientY+"px";
+    heart.style.fontSize="25px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove()},1000);
+});
 </script>
 
 </body>
