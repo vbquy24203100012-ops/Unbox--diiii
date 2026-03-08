@@ -102,4 +102,16 @@ setTimeout(()=>h.remove(),4000)
 
 /* hoa rơi */
 setInterval(()=>{
-let f=document.createElement("
+let f=document.createElement("div")
+f.className="flower"
+f.innerHTML="🌸"
+f.style.left=Math.random()*100+"vw"
+f.style.animationDuration=3+Math.random()*5+"s"
+document.body.appendChild(f)
+setTimeout(()=>f.remove(),8000)
+},500)
+
+</script>
+
+</body>
+</html>
